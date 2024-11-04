@@ -20,10 +20,10 @@ defmodule AuctionsWeb.Router do
     get "/", PageController, :home
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", AuctionsWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", AuctionsWeb do
+    pipe_through :api
+    resources "/users", UserController, except: [ :new, :edit]
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:auctions, :dev_routes) do
